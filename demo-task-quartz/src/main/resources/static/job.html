@@ -77,6 +77,9 @@
             <el-form-item label="表达式" label-width="100px" style="width:90%">
                 <el-input v-model="form.cronExpression" auto-complete="off"></el-input>
             </el-form-item>
+          <el-form-item label="数据源" label-width="100px" style="width:90%">
+            <el-input v-model="form.dataType" auto-complete="off"></el-input>
+          </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -125,7 +128,8 @@
             form: {
                 jobName: '',
                 jobGroup: '',
-                cronExpression: ''
+                cronExpression: '',
+                dataType: ''
             },
             updateform: {
                 jobName: '',
@@ -205,7 +209,8 @@
                 this.$http.post('job', {
                     "jobClassName": this.form.jobName,
                     "jobGroupName": this.form.jobGroup,
-                    "cronExpression": this.form.cronExpression
+                    "cronExpression": this.form.cronExpression,
+                    "dataType": this.form.dataType
                 }, {emulateJSON: true}).then(function (res) {
                     this.loadData(this.currentPage, this.pagesize);
                     this.dialogFormVisible = false;

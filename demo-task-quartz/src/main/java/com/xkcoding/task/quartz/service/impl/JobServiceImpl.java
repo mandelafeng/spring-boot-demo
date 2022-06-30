@@ -47,7 +47,10 @@ public class JobServiceImpl implements JobService {
         scheduler.start();
 
         // 构建Job信息
-        JobDetail jobDetail = JobBuilder.newJob(JobUtil.getClass(form.getJobClassName()).getClass()).withIdentity(form.getJobClassName(), form.getJobGroupName()).build();
+        JobDetail jobDetail = JobBuilder.newJob(JobUtil.getClass(form.getJobClassName()).getClass())
+            .withIdentity(form.getJobClassName(), form.getJobGroupName())
+            .usingJobData("dataType", form.getDataType())
+            .build();
 
         // Cron表达式调度构建器(即任务执行的时间)
         CronScheduleBuilder cron = CronScheduleBuilder.cronSchedule(form.getCronExpression());

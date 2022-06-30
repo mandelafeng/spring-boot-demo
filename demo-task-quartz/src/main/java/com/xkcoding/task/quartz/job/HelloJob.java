@@ -18,6 +18,8 @@ public class HelloJob implements BaseJob {
 
     @Override
     public void execute(JobExecutionContext context) {
+        System.out.println(context);
+        System.out.println(context.getJobDetail().getJobDataMap().get("dataType"));
         log.error("Hello Job 执行时间: {}", DateUtil.now());
     }
 }

@@ -31,4 +31,10 @@ public class JobForm {
      */
     @NotBlank(message = "cron表达式不能为空")
     private String cronExpression;
+    /**
+     * 任务数据类型
+     */
+    @NotBlank(message = "dataType能为空")
+    private String dataType;
+
 }
