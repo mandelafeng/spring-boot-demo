@@ -35,12 +35,8 @@ public class ServerTask {
     @Scheduled(cron = "0/2 * * * * ?")
     public void websocket() throws Exception {
         log.info("【推送消息】开始执行：{}", DateUtil.formatDateTime(new Date()));
-        // 查询服务器状态
-        Server server = new Server();
-        server.copyTo();
-        ServerVO serverVO = ServerUtil.wrapServerVO(server);
-        Dict dict = ServerUtil.wrapServerDict(serverVO);
-        wsTemplate.convertAndSend(WebSocketConsts.PUSH_SERVER, JSONUtil.toJsonStr(dict));
+        // 将时间戳推送到前端
+        wsTemplate.convertAndSend(WebSocketConsts.PUSH_SERVER, System.currentTimeMillis());
         log.info("【推送消息】执行结束：{}", DateUtil.formatDateTime(new Date()));
     }
 }
