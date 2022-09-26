@@ -10,6 +10,7 @@ import com.xkcoding.task.quartz.util.JobUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,12 +26,12 @@ import java.util.List;
 @Service
 @Slf4j
 public class JobServiceImpl implements JobService {
-    private final Scheduler scheduler;
+    private final SchedulerFactoryBean schedulerFactoryBean;
     private final JobMapper jobMapper;
 
     @Autowired
-    public JobServiceImpl(Scheduler scheduler, JobMapper jobMapper) {
-        this.scheduler = scheduler;
+    public JobServiceImpl(SchedulerFactoryBean schedulerFactoryBean, JobMapper jobMapper) {
+        this.schedulerFactoryBean = schedulerFactoryBean;
         this.jobMapper = jobMapper;
     }
 
@@ -43,12 +44,14 @@ public class JobServiceImpl implements JobService {
      */
     @Override
     public void addJob(JobForm form) throws Exception {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
         // 启动调度器
         scheduler.start();
 
         // 构建Job信息
         JobDetail jobDetail = JobBuilder.newJob(JobUtil.getClass(form.getJobClassName()).getClass())
-            .withIdentity(form.getJobClassName(), form.getJobGroupName())
+//            .withIdentity(form.getJobClassName(), form.getJobGroupName())
+            .withIdentity(form.getDataType(),form.getJobGroupName())
             .usingJobData("dataType", form.getDataType())
             .build();
 
@@ -56,7 +59,11 @@ public class JobServiceImpl implements JobService {
         CronScheduleBuilder cron = CronScheduleBuilder.cronSchedule(form.getCronExpression());
 
         //根据Cron表达式构建一个Trigger
-        CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(form.getJobClassName(), form.getJobGroupName()).withSchedule(cron).build();
+        CronTrigger trigger = TriggerBuilder.newTrigger()
+            .withIdentity(form.getDataType(), form.getJobGroupName())
+            .withSchedule(cron)
+            .forJob(form.getDataType(),form.getJobGroupName())
+            .build();
 
         try {
             scheduler.scheduleJob(jobDetail, trigger);
@@ -75,6 +82,7 @@ public class JobServiceImpl implements JobService {
      */
     @Override
     public void deleteJob(JobForm form) throws SchedulerException {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
         scheduler.pauseTrigger(TriggerKey.triggerKey(form.getJobClassName(), form.getJobGroupName()));
         scheduler.unscheduleJob(TriggerKey.triggerKey(form.getJobClassName(), form.getJobGroupName()));
         scheduler.deleteJob(JobKey.jobKey(form.getJobClassName(), form.getJobGroupName()));
@@ -88,6 +96,7 @@ public class JobServiceImpl implements JobService {
      */
     @Override
     public void pauseJob(JobForm form) throws SchedulerException {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
         scheduler.pauseJob(JobKey.jobKey(form.getJobClassName(), form.getJobGroupName()));
     }
 
@@ -99,6 +108,7 @@ public class JobServiceImpl implements JobService {
      */
     @Override
     public void resumeJob(JobForm form) throws SchedulerException {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
         scheduler.resumeJob(JobKey.jobKey(form.getJobClassName(), form.getJobGroupName()));
     }
 
@@ -110,6 +120,7 @@ public class JobServiceImpl implements JobService {
      */
     @Override
     public void cronJob(JobForm form) throws Exception {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
         try {
             TriggerKey triggerKey = TriggerKey.triggerKey(form.getJobClassName(), form.getJobGroupName());
             // 表达式调度构建器

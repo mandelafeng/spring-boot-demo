@@ -5,7 +5,7 @@ import com.xkcoding.orm.mybatis.plus.entity.User;
 
 /**
  * <p>
- * User Service
+ * User Service 继承IService接口
  * </p>
  *
  * @author yangkai.shen

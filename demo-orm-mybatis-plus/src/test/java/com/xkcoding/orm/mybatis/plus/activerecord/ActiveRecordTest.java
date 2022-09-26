@@ -27,6 +27,9 @@ public class ActiveRecordTest extends SpringBootDemoOrmMybatisPlusApplicationTes
     public void testActiveRecordInsert() {
         Role role = new Role();
         role.setName("VIP");
+        /**
+         * 实体对象通过继承model 实现对象的CRUD
+         */
         Assert.assertTrue(role.insert());
         // 成功直接拿会写的 ID
         log.debug("【role】= {}", role);
