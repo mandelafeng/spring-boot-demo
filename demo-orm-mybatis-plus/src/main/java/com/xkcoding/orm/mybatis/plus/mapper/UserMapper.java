@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * UserMapper
+ * UserMapper 继承BaseMapper接口
  * </p>
  *
  * @author yangkai.shen

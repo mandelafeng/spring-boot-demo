@@ -37,7 +37,8 @@ public class UserServiceTest extends SpringBootDemoOrmMybatisPlusApplicationTest
     @Test
     public void testSave() {
         String salt = IdUtil.fastSimpleUUID();
-        User testSave3 = User.builder().name("testSave3").password(SecureUtil.md5("123456" + salt)).salt(salt).email("testSave3@xkcoding.com").phoneNumber("17300000003").status(1).lastLoginTime(new DateTime()).build();
+        User testSave3 = User.builder().name("testSave3").password(SecureUtil.md5("123456" + salt)).salt(salt)
+            .email("testSave3@xkcoding.com").phoneNumber("17300000003").status(1).lastLoginTime(new DateTime()).build();
         boolean save = userService.save(testSave3);
         Assert.assertTrue(save);
         log.debug("【测试id回显#testSave3.getId()】= {}", testSave3.getId());

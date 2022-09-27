@@ -5,7 +5,7 @@ import com.xkcoding.orm.mybatis.plus.entity.Role;
 
 /**
  * <p>
- * RoleMapper
+ * RoleMapper  继承BaseMapper接口
  * </p>
  *
  * @author yangkai.shen

@@ -65,7 +65,7 @@ public class User implements Serializable {
     private Integer status;
 
     /**
-     * 创建时间
+     * 创建时间 注意这个fill属性 自动更新值
      */
     @TableField(fill = INSERT)
     private Date createTime;
@@ -76,7 +76,7 @@ public class User implements Serializable {
     private Date lastLoginTime;
 
     /**
-     * 上次更新时间
+     * 上次更新时间 注意这个fill属性 自动更新值
      */
     @TableField(fill = INSERT_UPDATE)
     private Date lastUpdateTime;
