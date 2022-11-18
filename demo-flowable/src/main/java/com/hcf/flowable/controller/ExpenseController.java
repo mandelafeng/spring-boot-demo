@@ -104,6 +104,7 @@ public class ExpenseController {
 
         //流程走完的不显示图
         if (pi == null) {
+            System.out.println("流程已走完！");
             return;
         }
         Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();

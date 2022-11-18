@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class MyUserDetailsService implements UserDetailsService {
-
     @Autowired
     private UserMapper userMapper;
 
@@ -25,7 +24,6 @@ public class MyUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("用户不存在");
         }
         user.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRoles()));
-
         return user;
     }
 }
