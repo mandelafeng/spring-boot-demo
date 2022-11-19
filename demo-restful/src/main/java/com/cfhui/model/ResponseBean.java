@@ -1,7 +1,7 @@
 package com.cfhui.model;
 
 import lombok.Data;
-import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 
 @Data
 public class ResponseBean {
@@ -19,18 +19,18 @@ public class ResponseBean {
     private Object data;
 
     public static ResponseBean success() {
-        return new ResponseBean(HttpStatus.SC_OK, "");
+        return new ResponseBean(HttpStatus.OK.value(), "");
     }
     public static ResponseBean success(String message) {
-        return new ResponseBean(HttpStatus.SC_OK, message);
+        return new ResponseBean(HttpStatus.OK.value(), message);
     }
 
     public static ResponseBean success(String message, Object data) {
-        return new ResponseBean(HttpStatus.SC_INTERNAL_SERVER_ERROR, message, data);
+        return new ResponseBean(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, data);
     }
 
     public static ResponseBean error(String message) {
-        return new ResponseBean(HttpStatus.SC_INTERNAL_SERVER_ERROR, message);
+        return new ResponseBean(HttpStatus.INTERNAL_SERVER_ERROR.value(), message);
     }
 
     public static ResponseBean error(String message, Object data) {
