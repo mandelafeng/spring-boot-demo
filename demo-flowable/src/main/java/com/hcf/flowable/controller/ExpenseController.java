@@ -3,12 +3,14 @@ package com.hcf.flowable.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.*;
+import org.flowable.engine.history.HistoricActivityInstanceQuery;
 import org.flowable.engine.runtime.Execution;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.image.ProcessDiagramGenerator;
 import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,6 +32,9 @@ public class ExpenseController {
     private RepositoryService repositoryService;
     @Autowired
     private ProcessEngine processEngine;
+
+    @Autowired
+    private HistoryService historyService;
 
 /***************此处为业务代码******************/
     /**
@@ -96,6 +101,63 @@ public class ExpenseController {
         taskService.complete(taskId, map);
         return "reject";
     }
+
+    /**
+     * 查看历史流程记录
+     * @param processInstanceId
+     * @return
+     */
+    @GetMapping("historyList")
+    public Object getHistoryList(String processInstanceId) {
+        HistoricActivityInstanceQuery query = historyService.createHistoricActivityInstanceQuery();
+        return query.processInstanceId(processInstanceId).finished().orderByHistoricActivityInstanceEndTime();
+    }
+
+    /**
+     * 终止流程实例
+     * @param processInstanceId
+     * @return
+     */
+    public String deleteProcessInstanceById(String processInstanceId) {
+        runtimeService.deleteProcessInstance(processInstanceId, "终止原因");
+        return "终止流程实例成功";
+    }
+
+    /**
+     * 挂起流程实例
+     * @param processInstanceId 当前流程实例Id
+     * @return
+     */
+    @GetMapping("hangUp")
+    public String hangUpProcessInstance(String processInstanceId) {
+        runtimeService.suspendProcessInstanceById(processInstanceId);
+        return "挂起流程成功...";
+    }
+
+    /**
+     * 恢复(唤醒) 被挂起的流程实例
+     * @param processInstanceId
+     * @return
+     */
+    @GetMapping("recovery")
+    public String activeProcessInstance(String processInstanceId) {
+        runtimeService.activateProcessInstanceById(processInstanceId);
+        return "恢复流程成功...";
+    }
+
+    /**
+     * 判断传入流程实例在运行中是否存在
+     * @param processInstanceId
+     * @return
+     */
+    @GetMapping("isExist/running")
+    public Boolean isExistProcessInstanceRunning(String processInstanceId) {
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
+        return processInstance != null;
+    }
+
+
+
 
     /**
      * 生成流程图
