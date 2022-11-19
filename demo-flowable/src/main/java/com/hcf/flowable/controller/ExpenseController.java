@@ -1,5 +1,6 @@
 package com.hcf.flowable.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.*;
 import org.flowable.engine.runtime.Execution;
@@ -46,6 +47,7 @@ public class ExpenseController {
         map.put("taskUser", userId);
         map.put("money", money);
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Expense", map);
+        System.out.println(processInstance.getId());
         return "提交成功.流程Id为：" + processInstance.getId();
     }
 
@@ -54,12 +56,14 @@ public class ExpenseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String userId) {
+    public Object list(String userId) throws JsonProcessingException {
         List<Task> tasks = taskService.createTaskQuery().taskAssignee(userId).orderByTaskCreateTime().desc().list();
+        StringBuffer sb = new StringBuffer();
         for (Task task : tasks) {
-            System.out.println(task.toString());
+            sb.append(task.toString()).append("\n");
         }
-        return tasks.toArray().toString();
+        System.out.println(sb);
+        return sb.toString();
     }
 
     /**

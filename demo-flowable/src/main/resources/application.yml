@@ -9,4 +9,4 @@ flowable:
   async-executor-activate: false
   database-schema-update: true
 server:
-  port: 8080
+  port: 8081

@@ -11,6 +11,7 @@ public class BossTaskHandler implements TaskListener {
 
     @Override
     public void notify(DelegateTask delegateTask) {
+        System.out.println("Boss 审批");
         delegateTask.setAssignee("老板");
     }
 

@@ -71,6 +71,7 @@
     <module>demo-flyway</module>
     <module>demo-pay</module>
     <module>demo-restful</module>
+    <module>demo-flowable</module>
   </modules>
   <packaging>pom</packaging>
 
