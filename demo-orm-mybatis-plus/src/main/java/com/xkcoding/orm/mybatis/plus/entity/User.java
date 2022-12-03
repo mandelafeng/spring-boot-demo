@@ -37,6 +37,7 @@ public class User implements Serializable {
     /**
      * 用户名
      */
+    @TableField(value = "name")
     private String name;
 
     /**
@@ -73,6 +74,7 @@ public class User implements Serializable {
     /**
      * 上次登录时间
      */
+    @TableField(exist = false)
     private Date lastLoginTime;
 
     /**

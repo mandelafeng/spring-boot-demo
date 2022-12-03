@@ -115,7 +115,6 @@ public class UserServiceTest extends SpringBootDemoOrmMybatisPlusApplicationTest
         initData();
         int count = userService.count(new QueryWrapper<>());
         Page<User> userPage = new Page<>(1, 5);
-        userPage.setDesc("id");
         IPage<User> page = userService.page(userPage, new QueryWrapper<>());
         Assert.assertEquals(5, page.getSize());
         Assert.assertEquals(count, page.getTotal());
@@ -144,5 +143,7 @@ public class UserServiceTest extends SpringBootDemoOrmMybatisPlusApplicationTest
     private void initData() {
         testSaveList();
     }
+
+
 
 }
