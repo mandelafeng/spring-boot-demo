@@ -74,6 +74,7 @@
     <module>demo-flowable</module>
     <module>demo-XML</module>
     <module>demo-http</module>
+    <module>demo-java</module>
   </modules>
   <packaging>pom</packaging>
 
