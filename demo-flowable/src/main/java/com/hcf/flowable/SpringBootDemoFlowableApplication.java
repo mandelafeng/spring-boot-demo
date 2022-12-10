@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2022/11/18 11:09
  */
 @SpringBootApplication
-public class SpringBootSDemoFlowableApplication {
+public class SpringBootDemoFlowableApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootSDemoFlowableApplication.class, args);
+        SpringApplication.run(SpringBootDemoFlowableApplication.class, args);
     }
 }
