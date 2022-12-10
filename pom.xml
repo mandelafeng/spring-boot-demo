@@ -73,6 +73,7 @@
     <module>demo-restful</module>
     <module>demo-flowable</module>
     <module>demo-XML</module>
+    <module>demo-http</module>
   </modules>
   <packaging>pom</packaging>
 
