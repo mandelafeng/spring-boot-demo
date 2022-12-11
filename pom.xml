@@ -75,6 +75,7 @@
     <module>demo-XML</module>
     <module>demo-http</module>
     <module>demo-java</module>
+    <module>demo-guava</module>
   </modules>
   <packaging>pom</packaging>
 
