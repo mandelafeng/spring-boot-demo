@@ -76,6 +76,7 @@
     <module>demo-http</module>
     <module>demo-java</module>
     <module>demo-guava</module>
+      <module>demo-minio</module>
   </modules>
   <packaging>pom</packaging>
 
