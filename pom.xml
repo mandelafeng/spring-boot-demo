@@ -77,6 +77,8 @@
     <module>demo-java</module>
     <module>demo-guava</module>
       <module>demo-minio</module>
+    <module>demo-multi-and-big-file-upload</module>
+      <module>demo-param-valid</module>
   </modules>
   <packaging>pom</packaging>
 
