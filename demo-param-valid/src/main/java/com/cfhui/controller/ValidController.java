@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @description TODO
  * @date 2022/12/13 10:12
  */
-@Validated
 @RestController
 @RequestMapping("/valid")
 public class ValidController {
