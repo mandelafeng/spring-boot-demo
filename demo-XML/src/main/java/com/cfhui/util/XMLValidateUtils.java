@@ -1,10 +1,4 @@
-package com.cfhui.util;/**
- * @ClassName XMLValidateUtils
- * @Description TODO
- * @Author cfhui
- * @Date 2022/12/10 11:39
- */
-
+package com.cfhui.util;
 import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -14,9 +8,15 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.SAXValidator;
 import org.dom4j.util.XMLErrorHandler;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -78,4 +78,22 @@ public class XMLValidateUtils {
         log.info("Good! XML文件通过XSD文件校验成功！");
         return true;
     }
+
+
+    public static boolean validateXMLSchema(String xsdPath, String xmlPath) {
+        File xmlFile = new File(xmlPath);
+        try {
+            SchemaFactory factory =
+                SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = factory.newSchema(new File(xsdPath));
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(xmlFile));
+        } catch (IOException e) {
+            log.error("xml文件校验异常：", e);
+        } catch (org.xml.sax.SAXException e) {
+            log.error("xml文件校验失败", e);
+        }
+        return true;
+    }
+
 }

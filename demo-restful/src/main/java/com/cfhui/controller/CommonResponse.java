@@ -44,4 +44,9 @@ public class CommonResponse {
         return ResponseDTO.wrap(LoginResponseCodeConst.LOGIN_ERROR, "登录错误");
     }
 
+    @GetMapping("/test6")
+    public ResponseDTO<User> test6() {
+        return ResponseDTO.wrap(LoginResponseCodeConst.LOGIN_ERROR, "登录错误");
+    }
+
 }

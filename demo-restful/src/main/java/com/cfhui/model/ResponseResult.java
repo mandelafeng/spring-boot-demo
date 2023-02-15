@@ -68,6 +68,7 @@ public class ResponseResult extends HashMap<String, Object> {
      *
      * @return 成功消息
      */
+    @Deprecated
     public static ResponseResult success() {
         return ResponseResult.success("操作成功");
     }
@@ -77,6 +78,7 @@ public class ResponseResult extends HashMap<String, Object> {
      *
      * @return 成功消息
      */
+    @Deprecated
     public static ResponseResult success(Object data) {
         return ResponseResult.success("操作成功", data);
     }
@@ -87,6 +89,7 @@ public class ResponseResult extends HashMap<String, Object> {
      * @param msg 返回内容
      * @return 成功消息
      */
+    @Deprecated
     public static ResponseResult success(String msg) {
         return ResponseResult.success(msg, null);
     }
@@ -98,6 +101,7 @@ public class ResponseResult extends HashMap<String, Object> {
      * @param data 数据对象
      * @return 成功消息
      */
+    @Deprecated
     public static ResponseResult success(String msg, Object data) {
         ResponseResult responseResult = new ResponseResult(HttpStatus.OK.value(), msg, data);
         responseResult.put(FLAG_TAG,true);
@@ -109,6 +113,7 @@ public class ResponseResult extends HashMap<String, Object> {
      *
      * @return
      */
+    @Deprecated
     public static ResponseResult error() {
         return ResponseResult.error("操作失败");
     }
@@ -119,6 +124,7 @@ public class ResponseResult extends HashMap<String, Object> {
      * @param msg 返回内容
      * @return 警告消息
      */
+    @Deprecated
     public static ResponseResult error(String msg) {
         return ResponseResult.error(msg, null);
     }
@@ -141,6 +147,7 @@ public class ResponseResult extends HashMap<String, Object> {
      * @param msg  返回内容
      * @return 警告消息
      */
+    @Deprecated
     public static ResponseResult error(int code, String msg) {
         return new ResponseResult(code, msg, null);
     }
@@ -173,15 +180,36 @@ public class ResponseResult extends HashMap<String, Object> {
         super.put(MSG_TAG, msg);
         super.put(DATA_TAG, data);
     }
-
+    /**
+     * @description 返回正常
+     * @return 成功消息
+     * @author cfhui
+     * @since V2
+     * @date 2023/1/3 9:15
+     */
     public static ResponseResult ok() {
         return new ResponseResult(ResponseCodeConst.SUCCESS);
     }
-
+    /**
+     * @description 返回成功数据
+     * @param data 成功数据
+     * @return 成功数据
+     * @author cfhui
+     * @since V1
+     * @date 2023/1/3 9:16
+     */
     public static ResponseResult ok(Object data) {
         return new ResponseResult(ResponseCodeConst.SUCCESS, data);
     }
-
+    /**
+     * @description 返回成功消息 + 数据
+     * @param data 成功数据
+     * @param msg 成功消息
+     * @return 成功
+     * @author cfhui
+     * @since V1
+     * @date 2023/1/3 9:17
+     */
     public static ResponseResult ok(Object data, String msg) {
         return new ResponseResult(ResponseCodeConst.SUCCESS, msg, data);
     }

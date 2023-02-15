@@ -14,12 +14,18 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SpringBootDemoXMLApplicationTest {
+    String xmlPath = "E:\\MyWorkspace\\Data\\msme\\OpenSCENARIO_v0.9.1_examples\\OpenSCENARIO_v0.9.1\\Examples\\DE\\Langsamer_Vorausfahrer\\Langsamer_Vorausfahrer.xosc";
+    String xsdPath = "E:\\MyWorkspace\\Data\\msme\\OpenSCENARIO_v0.9.1_specification\\OpenSCENARIO_v0.9.1\\OpenSCENARIO_v0.9.1.xsd";
     @Test
     public void test1() {
-        String xmlPath = "D:\\My_WorkSpace\\Code\\MyCode\\spring-boot-demo\\demo-XML\\src\\main\\resources\\book.XML";
-        String xsdPath = "D:\\My_WorkSpace\\Code\\MyCode\\spring-boot-demo\\demo-XML\\src\\main\\resources\\book.xsd";
+
         boolean isOK = XMLValidateUtils.validateXMLByXSD(xmlPath, xsdPath);
         Assert.assertTrue(isOK);
+    }
+    @Test
+    public void test2() {
+        boolean b = XMLValidateUtils.validateXMLSchema(xsdPath, xmlPath);
+        Assert.assertTrue(b);
     }
 
 }
