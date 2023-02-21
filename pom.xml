@@ -76,9 +76,10 @@
     <module>demo-http</module>
     <module>demo-java</module>
     <module>demo-guava</module>
-      <module>demo-minio</module>
+    <module>demo-minio</module>
     <module>demo-multi-and-big-file-upload</module>
-      <module>demo-param-valid</module>
+    <module>demo-param-valid</module>
+    <module>es</module>
   </modules>
   <packaging>pom</packaging>
 

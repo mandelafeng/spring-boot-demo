@@ -68,4 +68,9 @@ public class StreamAPITest {
 
     }
 
+    @Test
+    public void flatMapTest() {
+//        list.stream().flatMap();
+    }
 }
+
