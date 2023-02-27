@@ -80,6 +80,7 @@
     <module>demo-multi-and-big-file-upload</module>
     <module>demo-param-valid</module>
     <module>es</module>
+    <module>demo-design-pattern</module>
   </modules>
   <packaging>pom</packaging>
 
