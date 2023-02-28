@@ -1,4 +1,4 @@
-package com.cfhui.observer;
+package com.cfhui.observer.demo1;
 
 /**
  * [客户端]

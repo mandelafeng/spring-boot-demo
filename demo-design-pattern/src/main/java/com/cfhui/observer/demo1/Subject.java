@@ -1,4 +1,4 @@
-package com.cfhui.observer;
+package com.cfhui.observer.demo1;
 
 import java.util.ArrayList;
 import java.util.List;

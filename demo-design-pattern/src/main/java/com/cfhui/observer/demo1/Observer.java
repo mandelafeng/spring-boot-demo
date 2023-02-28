@@ -1,4 +1,4 @@
-package com.cfhui.observer;
+package com.cfhui.observer.demo1;
 
 /**
  * 抽象观察者
