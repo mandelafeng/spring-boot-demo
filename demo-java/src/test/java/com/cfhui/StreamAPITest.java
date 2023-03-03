@@ -5,20 +5,22 @@ import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- *@ClassName StreamAPITest
- *@Description TODO
- *@Author cfhui
- *@Date 2022/12/10 18:31
+ * @ClassName StreamAPITest
+ * @Description TODO
+ * @Author cfhui
+ * @Date 2022/12/10 18:31
  */
 
 public class StreamAPITest {
     List<User> list = Lists.newArrayList();
+
     @Before
     public void test() {
 
@@ -71,6 +73,9 @@ public class StreamAPITest {
     @Test
     public void flatMapTest() {
 //        list.stream().flatMap();
+        ArrayList<Object> objects = new ArrayList<>();
+        String property = System.getProperty("user.dir");
+        System.out.println("property = " + property);
     }
 }
 
