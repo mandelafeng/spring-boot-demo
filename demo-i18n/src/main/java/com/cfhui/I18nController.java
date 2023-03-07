@@ -21,6 +21,10 @@ public class I18nController {
 
     @GetMapping
     public String i18n() {
-        return messageSource.getMessage("i18n.user.name", null, LocaleContextHolder.getLocale());
+        return messageSource.getMessage("user.name", null, LocaleContextHolder.getLocale());
+    }
+    @GetMapping("/2")
+    public String i18n2() {
+        return MessageUtils.get("user.name");
     }
 }

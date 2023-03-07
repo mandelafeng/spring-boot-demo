@@ -17,17 +17,17 @@ public class I18nConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         //(1)Cookie方式
-        /* CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-        localeResolver.setCookieName("localeCookie");
-        //设置默认区域
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        localeResolver.setCookieMaxAge(3600);//设置cookie有效期.
-        return localeResolver;*/
+//        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+//        localeResolver.setCookieName("localeCookie");
+//        //设置默认区域
+//        localeResolver.setDefaultLocale(Locale.CHINA);
+//        localeResolver.setCookieMaxAge(3600);//设置cookie有效期.
+//        return localeResolver;
 
         //(2)Session方式
         SessionLocaleResolver slr = new SessionLocaleResolver();
         // 默认语言
-        slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+        slr.setDefaultLocale(Locale.CHINA);
         return slr;
     }
 
