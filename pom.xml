@@ -81,6 +81,7 @@
     <module>demo-param-valid</module>
     <module>es</module>
     <module>demo-design-pattern</module>
+    <module>demo-i18n</module>
   </modules>
   <packaging>pom</packaging>
 

@@ -27,6 +27,9 @@ public class StreamAPITest {
         for (int i = 0; i < 10; i++) {
             User user = User.builder().id(i).userName("name" + i).age(i).sex("女").build();
             list.add(user);
+            // TODO: 2023/3/7 cfhui
+            // TODO: 2023/3/7 cfhui
+            // TODO: 2023/3/7 cfhui
         }
     }
 

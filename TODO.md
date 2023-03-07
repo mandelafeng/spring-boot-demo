@@ -68,6 +68,7 @@
 - [ ] demo-springbatch（数据处理）
 - [ ] demo-security-justauth（使用 JustAuth 登录 GitHub，使用 Security 管理登录状态）
 - [x] ~~demo-flyway（集成 Flyway，项目启动时初始化数据库表结构，同时支持数据库脚本版本控制）~~
+- [ ] 异常重试
 
 ## 备注
 
