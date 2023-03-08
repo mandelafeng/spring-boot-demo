@@ -10,4 +10,5 @@ public class User {
     private String userName;
     private Integer age;
     private String sex;
+    private Order order;
 }
