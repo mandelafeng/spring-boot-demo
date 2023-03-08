@@ -26,7 +26,7 @@ public class ResponseBean {
     }
 
     public static ResponseBean success(String message, Object data) {
-        return new ResponseBean(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, data);
+        return new ResponseBean(HttpStatus.OK.value(), message, data);
     }
 
     public static ResponseBean success(Integer code, String message, Object data) {
