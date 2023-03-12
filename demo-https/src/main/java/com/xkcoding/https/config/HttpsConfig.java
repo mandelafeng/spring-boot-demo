@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <p>
  * HTTPS 配置类
+ * 因为 springBoot 不同时支持 http 和 https，所以要将访问 http 的请求重定向到 https
  * </p>
  *
  * @author Chen.Chao
@@ -25,7 +26,8 @@ public class HttpsConfig {
     public Connector connector() {
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");
-        connector.setPort(80);
+        // http 端口号
+        connector.setPort(81);
         connector.setSecure(false);
         connector.setRedirectPort(443);
         return connector;
