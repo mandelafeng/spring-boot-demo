@@ -1,5 +1,7 @@
 package com.cfhui.service;
 
+import com.cfhui.entity.User;
+
 /**
  * @ClassName DemoService
  * @Description TODO
@@ -9,4 +11,7 @@ package com.cfhui.service;
 public interface IDemoService {
 
     String getMsg();
+
+    User getUserByName(String userName);
+
 }
