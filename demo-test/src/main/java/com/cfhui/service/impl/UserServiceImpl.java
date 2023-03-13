@@ -1,11 +1,14 @@
 package com.cfhui.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.cfhui.entity.User;
 import com.cfhui.mapper.UserMapper;
-import com.cfhui.service.IDemoService;
+import com.cfhui.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName DemoServiceImpl
@@ -14,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @Date 2023/3/12 14:47
  */
 @Service
-public class DemoServiceImpl implements IDemoService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -32,10 +35,23 @@ public class DemoServiceImpl implements IDemoService {
         return user;
     }
 
+    @Override
     public boolean saveUser(User user) {
-        //调用userMapper的insert方法插入用户数据
-        int count = userMapper.insert(user);
-        //如果插入成功，返回true，否则返回false
-        return count > 0;
+        return userMapper.insert(user) > 0;
+    }
+
+    @Override
+    public boolean update(User user) {
+        UpdateWrapper<User> wrapper = new UpdateWrapper<>();
+        wrapper.eq("username", user.getUserName());
+        wrapper.set("email", user.getEmail());
+        return userMapper.update(null, wrapper) > 0;
+    }
+
+    @Override
+    public List<User> list() {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getEnable, "0");
+        return userMapper.selectList(wrapper);
     }
 }

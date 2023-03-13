@@ -1,7 +1,7 @@
 package com.cfhui.controller;
 
 import com.cfhui.entity.User;
-import com.cfhui.service.IDemoService;
+import com.cfhui.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping
-public class DemoController {
+public class UserController {
     @Autowired
-    private IDemoService demoService;
+    private IUserService demoService;
     @GetMapping("test1")
     public String test1() {
         return demoService.getMsg();
