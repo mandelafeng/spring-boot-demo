@@ -84,6 +84,7 @@
     <module>demo-i18n</module>
       <module>demo-sftp</module>
       <module>demo-test</module>
+      <module>demo-orm-spring-data-jpa</module>
   </modules>
   <packaging>pom</packaging>
 

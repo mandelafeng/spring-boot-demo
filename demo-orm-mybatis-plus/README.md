@@ -506,7 +506,7 @@ public class ActiveRecordTest extends SpringBootDemoOrmMybatisPlusApplicationTes
     }
 }
 ```
-
+- [ ] mp join 连表
 ## 参考
 
 - mybatis-plus官方文档：http://mp.baomidou.com/

@@ -66,6 +66,13 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+
+    <dependency>
+      <groupId>com.github.yulichang</groupId>
+      <artifactId>mybatis-plus-join</artifactId>
+      <!-- 此版本号可能不是最新版,请自行确认 -->
+      <version>1.2.4</version>
+    </dependency>
   </dependencies>
 
   <build>
