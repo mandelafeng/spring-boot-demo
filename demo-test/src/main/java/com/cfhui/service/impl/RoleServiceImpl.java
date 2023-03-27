@@ -3,9 +3,8 @@ package com.cfhui.service.impl;
 import com.cfhui.entity.Role;
 import com.cfhui.mapper.RoleMapper;
 import com.cfhui.service.IRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author cfhui
@@ -16,7 +15,7 @@ import javax.annotation.Resource;
 @Service
 public class RoleServiceImpl implements IRoleService {
 
-    @Resource
+    @Autowired
     private RoleMapper roleMapper;
 
     @Override

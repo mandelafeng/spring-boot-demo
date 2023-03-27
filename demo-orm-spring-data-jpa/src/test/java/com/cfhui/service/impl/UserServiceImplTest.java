@@ -1,13 +1,15 @@
 package com.cfhui.service.impl;
 
 import com.cfhui.entity.UserEntity;
+import com.cfhui.repository.UserEntityRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
 
@@ -17,8 +19,10 @@ import java.util.List;
 class UserServiceImplTest {
 
     @Autowired
-    @MockBean
+    @InjectMocks
     private UserServiceImpl userService;
+    @Mock
+    private UserEntityRepository repository;
 
     @Test
     void findById() {
@@ -46,6 +50,7 @@ class UserServiceImplTest {
 
     @Test
     void delete() {
+        // TODO: 2023/3/17 void 如何单元测试
         // 验证方法调用次数
         Mockito.verify(userService, Mockito.times(1)).delete(2);
     }
