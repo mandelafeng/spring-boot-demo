@@ -79,12 +79,12 @@
     <module>demo-minio</module>
     <module>demo-multi-and-big-file-upload</module>
     <module>demo-param-valid</module>
-<!--    <module>es</module>-->
+    <module>es</module>
     <module>demo-design-pattern</module>
     <module>demo-i18n</module>
-      <module>demo-sftp</module>
-      <module>demo-test</module>
-      <module>demo-orm-spring-data-jpa</module>
+    <module>demo-sftp</module>
+    <module>demo-test</module>
+    <module>demo-orm-spring-data-jpa</module>
   </modules>
   <packaging>pom</packaging>
 
