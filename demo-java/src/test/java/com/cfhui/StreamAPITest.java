@@ -5,10 +5,7 @@ import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -79,6 +76,12 @@ public class StreamAPITest {
         ArrayList<Object> objects = new ArrayList<>();
         String property = System.getProperty("user.dir");
         System.out.println("property = " + property);
+    }
+
+
+    @Test
+    public void test12() {
+        list.stream().sorted(Comparator.comparingInt(User::getAge)).limit(6).collect(Collectors.toList());
     }
 }
 

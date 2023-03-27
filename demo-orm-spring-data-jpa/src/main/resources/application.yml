@@ -6,6 +6,7 @@ spring:
     username: root
     password: 5tgbnhy6
   jpa:
+    show-sql: true
     properties:
       hibernate:
         enable_lazy_load_no_trans: true

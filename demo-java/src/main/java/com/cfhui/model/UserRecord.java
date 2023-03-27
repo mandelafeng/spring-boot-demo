@@ -6,5 +6,5 @@ package com.cfhui.model;
  * @version V1
  * @date 2023/3/8 下午 4:59
  */
-public record UserRecord(String userName, int age) {
-}
+//public record UserRecord(String userName, int age) {
+//}
