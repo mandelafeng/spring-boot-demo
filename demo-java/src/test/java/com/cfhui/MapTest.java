@@ -1,9 +1,12 @@
 package com.cfhui;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -112,5 +115,21 @@ public class MapTest {
     @Test
     public void test6() {
         map.putIfAbsent("", 0);
+    }
+
+    @Test
+    public void test7() {
+        Multimap<Integer, Integer> waitingMap = ArrayListMultimap.create();
+        waitingMap.put(1, 1);
+        waitingMap.put(1, 2);
+        Map<Integer, Collection<Integer>> map = waitingMap.asMap();
+        Collection<Integer> collection = map.get(1);
+        collection.forEach(System.out::println);
+    }
+
+    @Test
+    public void test8() {
+        Map<Object, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.getOrDefault(1, 0);
     }
 }
