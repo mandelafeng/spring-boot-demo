@@ -85,6 +85,7 @@
     <module>demo-sftp</module>
     <module>demo-test</module>
     <module>demo-orm-spring-data-jpa</module>
+      <module>demo-basic-web</module>
   </modules>
   <packaging>pom</packaging>
 
