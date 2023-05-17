@@ -1,2 +1,8 @@
 server:
     port: 8088
+demo:
+    config:
+        enable: true
+        person:
+            name: cfhui
+            age: 18
