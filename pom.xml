@@ -59,7 +59,7 @@
         <module>demo-multi-datasource-jpa</module>
         <module>demo-multi-datasource-mybatis</module>
         <module>demo-sharding-jdbc</module>
-        <module>demo-tio</module>
+        <module>demo-io</module>
         <module>demo-codegen</module>
         <module>demo-graylog</module>
         <module>demo-ldap</module>
