@@ -12,4 +12,6 @@ public class UserServiceImpl2 extends ServiceImpl<UserMapper, User> implements U
     public boolean saveBatch(Collection<User> entityList, int batchSize) {
         return super.saveBatch(entityList, batchSize);
     }
+
+
 }
