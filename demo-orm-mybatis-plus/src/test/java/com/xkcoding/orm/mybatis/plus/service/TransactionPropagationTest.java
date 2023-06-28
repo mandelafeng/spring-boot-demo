@@ -14,13 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TransactionPropagationTest extends SpringBootDemoOrmMybatisPlusApplicationTests {
 
     @Autowired
-    private TransactionPropagationService service;
+    private TransactionPropagationServiceA service;
 
     @Test
     public void transaction() {
         service.main();
     }
-
-
-
 }
