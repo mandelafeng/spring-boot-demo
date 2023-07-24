@@ -8,3 +8,6 @@ sealed classes密封类
 - 日期周期格式化
 - 精简数字格式化支持
 - Stream.toList()简化
+
+https://mp.weixin.qq.com/s/VdyXDBevE48Wtr95ug_aKw
+

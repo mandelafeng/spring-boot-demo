@@ -87,6 +87,7 @@
         <module>demo-orm-spring-data-jpa</module>
         <module>demo-basic-web</module>
         <module>demo-spring-boot-starter</module>
+        <module>demo-task-schedulingConfigurer</module>
     </modules>
     <packaging>pom</packaging>
 
