@@ -88,6 +88,7 @@
         <module>demo-basic-web</module>
         <module>demo-spring-boot-starter</module>
         <module>demo-task-schedulingConfigurer</module>
+        <module>demo-blockchain</module>
     </modules>
     <packaging>pom</packaging>
 
