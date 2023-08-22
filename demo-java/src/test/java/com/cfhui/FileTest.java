@@ -16,4 +16,8 @@ public class FileTest {
     public void getCurrentDirPath() {
         log.info(System.getProperty("user.dir"));
     }
+    @Test
+    public void ss() {
+        System.out.println("ss");
+    }
 }

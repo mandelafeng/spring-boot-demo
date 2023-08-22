@@ -108,4 +108,8 @@ public class ThreadTest {
         fixedThreadPool.shutdown();
     }
 
+    @Test
+    public void test4() {
+    }
+
 }
