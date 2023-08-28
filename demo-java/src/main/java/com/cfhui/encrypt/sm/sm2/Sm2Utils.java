@@ -1,4 +1,4 @@
-package com.cfhui.encrypt.sm;
+package com.cfhui.encrypt.sm.sm2;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.DecoderException;

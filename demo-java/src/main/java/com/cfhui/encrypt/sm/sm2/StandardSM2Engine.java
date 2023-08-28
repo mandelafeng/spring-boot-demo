@@ -1,4 +1,4 @@
-package com.cfhui.encrypt.sm;
+package com.cfhui.encrypt.sm.sm2;
 
 import org.bouncycastle.asn1.*;
 import org.bouncycastle.crypto.CipherParameters;
