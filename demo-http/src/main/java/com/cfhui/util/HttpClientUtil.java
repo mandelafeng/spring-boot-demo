@@ -24,10 +24,10 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -44,14 +44,15 @@ public class HttpClientUtil {
     private static HttpClientUtil instance;
     protected Charset charset;
 
-    private HttpClientUtil(){}
+    private HttpClientUtil() {
+    }
 
     public static HttpClientUtil getInstance() {
         return getInstance(Charset.defaultCharset());
     }
 
-    public static HttpClientUtil getInstance(Charset charset){
-        if(instance == null){
+    public static HttpClientUtil getInstance(Charset charset) {
+        if (instance == null) {
             instance = new HttpClientUtil();
         }
         instance.setCharset(charset);
@@ -64,17 +65,38 @@ public class HttpClientUtil {
 
     /**
      * post请求
+     *
+     * @param url 请求URL
+     * @return String 响应字符串
+     * @throws Exception
      */
     public String doPost(String url) throws Exception {
         return doPost(url, null, null);
     }
 
+    /**
+     * 带参数的post请求
+     *
+     * @param url    请求URL
+     * @param params 请求参数
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doPost(String url, Map<String, Object> params) throws Exception {
         return doPost(url, params, null);
     }
 
+    /**
+     * 带参数和请求体的post请求
+     *
+     * @param url    请求URL
+     * @param params 请求参数
+     * @param header 请求头参数
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doPost(String url, Map<String, Object> params, Map<String, String> header) throws Exception {
-        String body = null;
+        String body;
         try {
             // Post请求
             LOG.debug(" protocol: POST");
@@ -86,8 +108,7 @@ public class HttpClientUtil {
             // 设置Header
             if (header != null && !header.isEmpty()) {
                 LOG.debug("   header: " + JSON.toJSONString(header));
-                for (Iterator<Entry<String, String>> it = header.entrySet().iterator(); it.hasNext();) {
-                    Entry<String, String> entry = (Entry<String, String>) it.next();
+                for (Entry<String, String> entry : header.entrySet()) {
                     httpPost.setHeader(new BasicHeader(entry.getKey(), entry.getValue()));
                 }
             }
@@ -101,17 +122,31 @@ public class HttpClientUtil {
     }
 
     /**
-     * postJson请求
+     * post-参数转json请求
+     *
+     * @param url    请求URL
+     * @param params 请求参数
+     * @return String 响应字符串
+     * @throws Exception
      */
     public String doPostJson(String url, Map<String, Object> params) throws Exception {
         return doPostJson(url, params, null);
     }
 
+    /**
+     * post-参数转json + 请求头
+     *
+     * @param url    请求URL
+     * @param params 请求参数
+     * @param header 请求头
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doPostJson(String url, Map<String, Object> params, Map<String, String> header) throws Exception {
         String json = null;
         if (params != null && !params.isEmpty()) {
-            for (Iterator<Entry<String, Object>> it = params.entrySet().iterator(); it.hasNext();) {
-                Entry<String, Object> entry = (Entry<String, Object>) it.next();
+            for (Iterator<Entry<String, Object>> it = params.entrySet().iterator(); it.hasNext(); ) {
+                Entry<String, Object> entry = it.next();
                 Object object = entry.getValue();
                 if (object == null) {
                     it.remove();
@@ -122,16 +157,41 @@ public class HttpClientUtil {
         return postJson(url, json, header);
     }
 
+    /**
+     * post+json字符串请求
+     *
+     * @param url  请求URL
+     * @param json json
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doPostJson(String url, String json) throws Exception {
         return doPostJson(url, json, null);
     }
 
+    /**
+     * post+json字符串+请求头
+     *
+     * @param url    请求URL
+     * @param json   json
+     * @param header 请求头
+     * @return
+     * @throws Exception
+     */
     public String doPostJson(String url, String json, Map<String, String> header) throws Exception {
         return postJson(url, json, header);
     }
-
+    /**
+     * [基础方法] post+json字符串+请求头
+     *
+     * @param url    请求URL
+     * @param json   json
+     * @param header 请求头
+     * @return
+     * @throws Exception
+     */
     private String postJson(String url, String json, Map<String, String> header) throws Exception {
-        String body = null;
+        String body;
         try {
             // Post请求
             LOG.debug(" protocol: POST");
@@ -145,8 +205,7 @@ public class HttpClientUtil {
             // 设置Header
             if (header != null && !header.isEmpty()) {
                 LOG.debug("   header: " + JSON.toJSONString(header));
-                for (Iterator<Entry<String, String>> it = header.entrySet().iterator(); it.hasNext();) {
-                    Entry<String, String> entry = (Entry<String, String>) it.next();
+                for (Entry<String, String> entry : header.entrySet()) {
                     httpPost.setHeader(new BasicHeader(entry.getKey(), entry.getValue()));
                 }
             }
@@ -161,17 +220,35 @@ public class HttpClientUtil {
 
     /**
      * get请求
+     * @param url 请求URL
+     * @return String 响应字符串
+     * @throws Exception
      */
     public String doGet(String url) throws Exception {
         return doGet(url, null, null);
     }
 
+    /**
+     * get+请求头
+     * @param url 请求URL
+     * @param header 请求头
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doGet(String url, Map<String, String> header) throws Exception {
         return doGet(url, null, header);
     }
 
+    /**
+     * get请求+请求参数+请求头
+     * @param url 请求URL
+     * @param params 请求参数
+     * @param header 请求头
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doGet(String url, Map<String, Object> params, Map<String, String> header) throws Exception {
-        String body = null;
+        String body;
         try {
             // Get请求
             LOG.debug("protocol: GET");
@@ -180,9 +257,9 @@ public class HttpClientUtil {
             if (params != null && !params.isEmpty()) {
                 String str = EntityUtils.toString(new UrlEncodedFormEntity(map2NameValuePairList(params), charset));
                 String uri = httpGet.getURI().toString();
-                if(uri.indexOf("?") >= 0){
+                if (uri.contains("?")) {
                     httpGet.setURI(new URI(httpGet.getURI().toString() + "&" + str));
-                }else {
+                } else {
                     httpGet.setURI(new URI(httpGet.getURI().toString() + "?" + str));
                 }
             }
@@ -190,13 +267,12 @@ public class HttpClientUtil {
             // 设置Header
             if (header != null && !header.isEmpty()) {
                 LOG.debug("   header: " + header);
-                for (Iterator<Entry<String, String>> it = header.entrySet().iterator(); it.hasNext();) {
-                    Entry<String, String> entry = (Entry<String, String>) it.next();
+                for (Entry<String, String> entry : header.entrySet()) {
                     httpGet.setHeader(new BasicHeader(entry.getKey(), entry.getValue()));
                 }
             }
             // 发送请求,获取返回数据
-            body =  execute(httpGet);
+            body = execute(httpGet);
         } catch (Exception e) {
             throw e;
         }
@@ -206,26 +282,47 @@ public class HttpClientUtil {
 
     /**
      * 下载文件
+     * @param url 请求URL
+     * @param path 文件保存位置
+     * @throws Exception
      */
     public void doDownload(String url, String path) throws Exception {
         download(url, null, path);
     }
 
+    /**
+     * 下载文件 + 参数
+     * @param url 请求URL
+     * @param params 请求参数
+     * @param path 文件保存全路径
+     * @throws Exception
+     */
     public void doDownload(String url, Map<String, Object> params, String path) throws Exception {
         download(url, params, path);
     }
-
     /**
-     * 上传文件
+     * 文件上传
+     * @param url 请求URL
+     * @param name
+     * @param path
+     * @return
+     * @throws Exception
      */
     public String doUpload(String url, String name, String path) throws Exception {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put(name, new File(path));
         return doUpload(url, params);
     }
 
+    /**
+     * 文件上传+参数
+     * @param url 请求URL
+     * @param params 请求参数
+     * @return String 响应字符串
+     * @throws Exception
+     */
     public String doUpload(String url, Map<String, Object> params) throws Exception {
-        String body = null;
+        String body;
         // Post请求
         HttpPost httpPost = new HttpPost(url.trim());
         // 设置参数
@@ -233,9 +330,7 @@ public class HttpClientUtil {
         entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         entityBuilder.setCharset(charset);
         if (params != null && !params.isEmpty()) {
-            Iterator<String> it = params.keySet().iterator();
-            while (it.hasNext()) {
-                String key = it.next();
+            for (String key : params.keySet()) {
                 Object value = params.get(key);
                 if (value instanceof File) {
                     FileBody fileBody = new FileBody((File) value);
@@ -252,6 +347,13 @@ public class HttpClientUtil {
         return body;
     }
 
+    /**
+     * [基础方法] 下载
+     * @param url 请求URL
+     * @param params 请求参数
+     * @param path 下载位置
+     * @throws Exception
+     */
     private void download(String url, Map<String, Object> params, String path) throws Exception {
         // Get请求
         HttpGet httpGet = new HttpGet(url.trim());
@@ -259,7 +361,7 @@ public class HttpClientUtil {
             // 设置参数
             String str = EntityUtils.toString(new UrlEncodedFormEntity(map2NameValuePairList(params)));
             String uri = httpGet.getURI().toString();
-            if (uri.indexOf("?") >= 0) {
+            if (uri.contains("?")) {
                 httpGet.setURI(new URI(httpGet.getURI().toString() + "&" + str));
             } else {
                 httpGet.setURI(new URI(httpGet.getURI().toString() + "?" + str));
@@ -269,13 +371,19 @@ public class HttpClientUtil {
         downloadFile(httpGet, path);
     }
 
+    /**
+     * [基础方法-下载文件]
+     * @param requestBase 请求基础
+     * @param path 文件保存地址
+     * @throws Exception
+     */
     private void downloadFile(HttpRequestBase requestBase, String path) throws Exception {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             try (CloseableHttpResponse response = httpclient.execute(requestBase)) {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     byte[] b = EntityUtils.toByteArray(entity);
-                    OutputStream out = new BufferedOutputStream(new FileOutputStream(new File(path)));
+                    OutputStream out = new BufferedOutputStream(Files.newOutputStream(new File(path).toPath()));
                     out.write(b);
                     out.flush();
                     out.close();
@@ -295,7 +403,6 @@ public class HttpClientUtil {
         try {
             try (CloseableHttpResponse response = httpclient.execute(requestBase)) {
                 HttpEntity entity = response.getEntity();
-
                 if (entity != null) {
                     body = EntityUtils.toString(entity, charset.toString());
                 }
@@ -313,11 +420,9 @@ public class HttpClientUtil {
 
     private List<NameValuePair> map2NameValuePairList(Map<String, Object> params) {
         if (params != null && !params.isEmpty()) {
-            List<NameValuePair> list = new ArrayList<NameValuePair>();
-            Iterator<String> it = params.keySet().iterator();
-            while (it.hasNext()) {
-                String key = it.next();
-                if(params.get(key) != null) {
+            List<NameValuePair> list = new ArrayList<>();
+            for (String key : params.keySet()) {
+                if (params.get(key) != null) {
                     String value = String.valueOf(params.get(key));
                     list.add(new BasicNameValuePair(key, value));
                 }
@@ -326,8 +431,5 @@ public class HttpClientUtil {
         }
         return null;
     }
-
-
-
 }
 
