@@ -89,6 +89,7 @@
         <module>demo-spring-boot-starter</module>
         <module>demo-task-schedulingConfigurer</module>
         <module>demo-blockchain</module>
+        <module>demo-arthas</module>
     </modules>
     <packaging>pom</packaging>
 
