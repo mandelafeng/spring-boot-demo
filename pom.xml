@@ -90,6 +90,7 @@
         <module>demo-task-schedulingConfigurer</module>
         <module>demo-blockchain</module>
         <module>demo-arthas</module>
+        <module>demo-netty</module>
     </modules>
     <packaging>pom</packaging>
 
