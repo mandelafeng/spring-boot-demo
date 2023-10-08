@@ -23,9 +23,9 @@ public class MessageHandler {
     public void handleMessage(ConsumerRecord record, Acknowledgment acknowledgment) {
         try {
             String message = (String) record.value();
-            log.info("收到消息: {}", message);
+            System.out.println("收到消息: {}" +  message);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            System.out.println( e);
         } finally {
             // 手动提交 offset
             acknowledgment.acknowledge();

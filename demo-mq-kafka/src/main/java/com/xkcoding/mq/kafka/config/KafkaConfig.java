@@ -1,7 +1,6 @@
 package com.xkcoding.mq.kafka.config;
 
 import com.xkcoding.mq.kafka.constants.KafkaConsts;
-import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -22,9 +21,13 @@ import org.springframework.kafka.listener.ContainerProperties;
 @Configuration
 @EnableConfigurationProperties({KafkaProperties.class})
 @EnableKafka
-@AllArgsConstructor
+//@AllArgsConstructor
 public class KafkaConfig {
     private final KafkaProperties kafkaProperties;
+
+    public KafkaConfig(KafkaProperties kafkaProperties) {
+        this.kafkaProperties = kafkaProperties;
+    }
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {

@@ -12,7 +12,7 @@ public interface KafkaConsts {
     /**
      * 默认分区大小
      */
-    Integer DEFAULT_PARTITION_NUM = 3;
+    Integer DEFAULT_PARTITION_NUM = 1;
 
     /**
      * Topic 名称
