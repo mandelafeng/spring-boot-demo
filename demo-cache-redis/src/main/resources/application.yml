@@ -1,6 +1,7 @@
 spring:
   redis:
-    host: localhost
+    host: 180.76.101.230
+    password: 5tgbnhY6@
     # 连接超时时间（记得添加单位，Duration）
     timeout: 10000ms
     # Redis默认情况下有16个分片，这里配置具体使用的分片
