@@ -1,4 +1,4 @@
-package com.cfhui.observer.demo6;
+package com.cfhui.observer.demo6.base;
 
 public class GifReader implements Reader {
     @Override

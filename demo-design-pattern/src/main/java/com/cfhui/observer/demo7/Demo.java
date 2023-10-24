@@ -1,5 +1,10 @@
 package com.cfhui.observer.demo7;
 
+import com.cfhui.observer.demo7.factory.AndroidFactory;
+import com.cfhui.observer.demo7.factory.IosFactory;
+import com.cfhui.observer.demo7.factory.SystemFactory;
+import com.cfhui.observer.demo7.factory.WpFactory;
+
 /**
  * []
  *
@@ -14,14 +19,21 @@ public class Demo {
         OperationController operationController;
 
         //Android
-        mFactory=new AndroidFactory();
+        mFactory = new AndroidFactory();
+        interfaceController = mFactory.createInterfaceController();
+        operationController = mFactory.createOperationController();
+        interfaceController.display();
+        operationController.control();
         //Ios
-        mFactory=new IosFactory();
+        mFactory = new IosFactory();
+        interfaceController = mFactory.createInterfaceController();
+        operationController = mFactory.createOperationController();
+        interfaceController.display();
+        operationController.control();
         //Wp
-        mFactory=new WpFactory();
-
-        interfaceController=mFactory.createInterfaceController();
-        operationController=mFactory.createOperationController();
+        mFactory = new WpFactory();
+        interfaceController = mFactory.createInterfaceController();
+        operationController = mFactory.createOperationController();
         interfaceController.display();
         operationController.control();
 

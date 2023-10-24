@@ -1,5 +1,11 @@
 package com.cfhui.observer.demo6;
 
+import com.cfhui.observer.demo6.base.Reader;
+import com.cfhui.observer.demo6.factory.GifReaderFactory;
+import com.cfhui.observer.demo6.factory.JpgReaderFactory;
+import com.cfhui.observer.demo6.factory.PngReaderFactory;
+import com.cfhui.observer.demo6.factory.ReaderFactory;
+
 /**
  * []
  *

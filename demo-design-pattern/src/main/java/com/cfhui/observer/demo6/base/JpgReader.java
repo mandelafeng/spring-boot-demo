@@ -1,4 +1,4 @@
-package com.cfhui.observer.demo6;
+package com.cfhui.observer.demo6.base;
 
 public class JpgReader implements Reader {
     @Override

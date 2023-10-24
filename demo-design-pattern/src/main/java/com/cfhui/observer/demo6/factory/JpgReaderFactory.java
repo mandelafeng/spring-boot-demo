@@ -1,4 +1,7 @@
-package com.cfhui.observer.demo6;
+package com.cfhui.observer.demo6.factory;
+
+import com.cfhui.observer.demo6.base.JpgReader;
+import com.cfhui.observer.demo6.base.Reader;
 
 public class JpgReaderFactory implements ReaderFactory {
     @Override
