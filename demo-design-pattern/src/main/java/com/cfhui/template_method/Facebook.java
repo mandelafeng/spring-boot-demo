@@ -9,6 +9,7 @@ public class Facebook extends Network {
         this.password = password;
     }
 
+    @Override
     public boolean logIn(String userName, String password) {
         System.out.println("\nChecking user's parameters");
         System.out.println("Name: " + this.userName);
@@ -20,7 +21,7 @@ public class Facebook extends Network {
         System.out.println("\n\nLogIn success on Facebook");
         return true;
     }
-
+    @Override
     public boolean sendData(byte[] data) {
         boolean messagePosted = true;
         if (messagePosted) {
@@ -30,6 +31,7 @@ public class Facebook extends Network {
             return false;
         }
     }
+    @Override
 
     public void logOut() {
         System.out.println("User: '" + userName + "' was logged out from Facebook");
