@@ -74,4 +74,9 @@ public class JavaTest {
         person.setAddress(address);
         // Apache Commons Lang 需要对象实现序列化接口
     }
+
+    @Test
+    void test6() {
+        Runtime runtime = Runtime.getRuntime();
+    }
 }
