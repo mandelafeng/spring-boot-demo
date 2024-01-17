@@ -47,4 +47,10 @@ public class SpringBootDemoOrmMybatisPlusApplicationTests {
 
     }
 
+    @Test
+    public void test() {
+
+
+    }
+
 }
