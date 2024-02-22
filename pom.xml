@@ -91,6 +91,8 @@
         <module>demo-blockchain</module>
         <module>demo-arthas</module>
         <module>demo-netty</module>
+        <module>demo-db-sqlite</module>
+        <module>demo-big-file-upload</module>
     </modules>
     <packaging>pom</packaging>
 
