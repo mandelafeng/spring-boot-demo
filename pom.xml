@@ -93,6 +93,8 @@
         <module>demo-netty</module>
         <module>demo-db-sqlite</module>
         <module>demo-big-file-upload</module>
+        <module>demo-spring-ai</module>
+        <module>demo-lucence</module>
     </modules>
     <packaging>pom</packaging>
 
